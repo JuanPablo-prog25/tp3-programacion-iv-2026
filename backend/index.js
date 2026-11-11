@@ -2,7 +2,7 @@ import express from "express";
 import { conectarDB } from "./db.js";
 import cors from "cors";
 
-import authRouter from "./auth.js";
+
 import usuariosRouter from "./usuarios.js";
 import vehiculosRouter from "./vehiculos.js";
 import conductoresRouter from "./conductores.js";

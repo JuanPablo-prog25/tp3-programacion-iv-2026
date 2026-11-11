@@ -1,0 +1,31 @@
+@url=http://localhost:3000
+
+### Consultar usuarios
+GET {{url}}/usuarios
+
+### Consultar por un usuario
+GET {{url}}/usuarios/4
+
+### Crear usuario
+POST {{url}}/usuarios
+Content-Type: application/json
+
+{
+    "nombre": "Juan Pablo",
+    "email": "juan@gmail.com",
+    "password": "Minuscula123"
+}
+
+### Actualizar usuario
+
+PUT {{url}}/usuarios/3
+Content-Type: application/json
+
+{
+    "nombre": "Juan Pablo Ocampo",
+    "email": "juan@gmail.com"
+}
+
+
+### Eliminar usuario
+DELETE {{url}}/usuarios/3

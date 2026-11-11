@@ -1,9 +1,11 @@
-import { validationResult } from "express-validator";
+import { validationResult, param } from "express-validator";
 import passport from "passport";
 
 export const validarAutenticacion = passport.authenticate("jwt", {
   session: false,
 });
+
+export const validarId = param("id").isInt({ min: 1 });
 
 export const verificarValidaciones = (req, res, next) => {
   const resultadoValidacion = validationResult(req);
