@@ -1,5 +1,19 @@
-import express from "express";
+import { validationResult } from "express-validator";
+import passport from "passport";
 
-const router = express.Router();
+export const validarAutenticacion = passport.authenticate("jwt", {
+  session: false,
+});
 
-export default router;
+export const verificarValidaciones = (req, res, next) => {
+  const resultadoValidacion = validationResult(req);
+
+  if (!resultadoValidacion.isEmpty()) {
+    return res.status(400).json({
+      mensaje: "Parametros no validos",
+      errores: resultadoValidacion.array(),
+    });
+  }
+
+  next();
+};

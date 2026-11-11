@@ -7,6 +7,7 @@ import usuariosRouter from "./usuarios.js";
 import vehiculosRouter from "./vehiculos.js";
 import conductoresRouter from "./conductores.js";
 import viajesRouter from "./viajes.js";
+import authRouter, { authConfig } from "./auth.js";
 
 conectarDB();
 
@@ -18,6 +19,9 @@ app.use(express.json());
 
 // Habilito CORS
 app.use(cors());
+
+// Configurar passport
+authConfig();
 
 
 app.use("/auth", authRouter);
