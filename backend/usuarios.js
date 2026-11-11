@@ -2,11 +2,11 @@ import express from "express";
 import { db } from "./db.js";
 import bcrypt from "bcrypt";
 import { body } from "express-validator";
-import {validarId, verificarValidaciones,} from "./validaciones.js";
+import {validarId, verificarValidaciones, validarAutenticacion} from "./validaciones.js";
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/", validarAutenticacion, async (req, res) => {
   const [usuarios] = await db.execute(
     "SELECT id, nombre, email FROM usuarios"
   );
@@ -16,6 +16,7 @@ router.get("/", async (req, res) => {
 
 router.get(
   "/:id",
+  validarAutenticacion,
   validarId,
   verificarValidaciones,
   async (req, res) => {
@@ -47,6 +48,7 @@ router.post(
       minSymbols: 0,
     }),
   ],
+  validarAutenticacion,
   verificarValidaciones,
   async (req, res) => {
     const { nombre, email, password } = req.body;
@@ -77,6 +79,7 @@ router.post(
 
 router.put(
   "/:id",
+  validarAutenticacion,
   validarId,
   verificarValidaciones,
   async (req, res) => {
@@ -108,6 +111,7 @@ router.put(
 
 router.delete(
   "/:id",
+  validarAutenticacion,
   validarId,
   verificarValidaciones,
   async (req, res) => {
