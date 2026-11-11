@@ -1,0 +1,40 @@
+@url=http://localhost:3000
+
+
+### Obtener vehiculos
+
+GET {{url}}/vehiculos
+
+### Consultar por un vehiculo
+GET {{url}}/vehiculos/3
+
+
+### Crear vehiculo
+POST {{url}}/vehiculos
+
+Content-Type: application/json
+
+{
+    "marca": "Ford",
+    "modelo": "Fiesta",
+    "patente": "AA200HY",
+    "anio": 2016,
+    "capacidad_carga": 900
+}
+
+### Actualizar vehiculo
+
+PUT {{url}}/vehiculos/2
+
+Content-Type: application/json
+
+{
+    "marca": "Ford",
+    "modelo": "Ranger XLS",
+    "patente": "AB123CD",
+    "anio": 2023,
+    "capacidad_carga": 1300
+}
+
+### Eliminar vehiculo
+DELETE {{url}}/vehiculos/3
