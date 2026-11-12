@@ -1,8 +1,13 @@
 import express from "express";
 import { db } from "./db.js";
 import bcrypt from "bcrypt";
-import { body } from "express-validator";
-import {validarId, verificarValidaciones, validarAutenticacion} from "./validaciones.js";
+import {validarId , 
+  verificarValidaciones,
+   validarAutenticacion, 
+  validarUsuario,
+  validarUsuarioActualizacion
+} 
+  from "./validaciones.js";
 
 const router = express.Router();
 
@@ -37,18 +42,8 @@ router.get(
 
 router.post(
   "/",
-  [
-    body("nombre").isLength({ min: 1, max: 100 }),
-    body("email").isEmail(),
-    body("password").isStrongPassword({
-      minLength: 8,
-      minLowercase: 1,
-      minUppercase: 0,
-      minNumbers: 1,
-      minSymbols: 0,
-    }),
-  ],
   validarAutenticacion,
+  validarUsuario,
   verificarValidaciones,
   async (req, res) => {
     const { nombre, email, password } = req.body;
@@ -81,6 +76,7 @@ router.put(
   "/:id",
   validarAutenticacion,
   validarId,
+  validarUsuarioActualizacion,
   verificarValidaciones,
   async (req, res) => {
     const id = Number(req.params.id);

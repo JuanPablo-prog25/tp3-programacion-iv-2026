@@ -5,6 +5,31 @@ export const validarAutenticacion = passport.authenticate("jwt", {
   session: false,
 });
 
+//Validacion para los usuarios
+export const validarUsuario = [
+  body("nombre").isLength({ min: 1, max: 100 })
+  .withMessage("El nombre debe tener entre 1 y 100 caracteres"),
+  body("email").isEmail()
+  .withMessage("El email debe ser valido"),
+  body("password").isStrongPassword({
+      minLength: 8,
+      minLowercase: 1,
+      minUppercase: 0,
+      minNumbers: 1,
+      minSymbols: 0,
+    })
+  .withMessage("La contraseña no cumple los requisitos"),
+];
+
+
+export const validarUsuarioActualizacion = [
+  body("nombre").isLength({ min: 1, max: 100 })
+  .withMessage("El nombre debe tener entre 1 y 100 caracteres"),
+  body("email").isEmail()
+  .withMessage("El email debe ser valido"),
+];
+
+
     //validacion para los vehiculos
   export const validarVehiculo = [
   body("marca").notEmpty().isLength({ min: 1, max: 50 }),

@@ -25,7 +25,7 @@ CREATE TABLE conductores (
     nombre VARCHAR(50) NOT NULL,
     apellido VARCHAR(50) NOT NULL,
     numero_documento VARCHAR(20) NOT NULL UNIQUE,
-    numero_licencia VARCHAR(30) NOT NULL,
+    numero_licencia VARCHAR(30) NOT NULL UNIQUE,
     fecha_alta_licencia DATE NOT NULL,
     fecha_vencimiento_licencia DATE NOT NULL
 );

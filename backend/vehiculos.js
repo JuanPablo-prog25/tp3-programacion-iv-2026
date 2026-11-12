@@ -83,6 +83,7 @@ router.put(
   "/:id",
   validarAutenticacion,
   validarId,
+  validarVehiculo,
   verificarValidaciones,
   async (req, res) => {
     const id = Number(req.params.id);
