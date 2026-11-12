@@ -1,22 +1,21 @@
 @url=http://localhost:3000
 
-@token= eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImVtYWlsIjoianVhbkBnbWFpbC5jb20iLCJpYXQiOjE3OTQ0MzUyNTEsImV4cCI6MTc5NDQ0OTY1MX0.4U0oVf5K5PQuzI5PYY4epu9UGBmJPq5ABvPjngeKdLk
+
 
 ### Obtener conductores
 
 GET {{url}}/conductores
-Authorization: Bearer {{token}}
 
 ### Consultar por un conductor
 
 GET {{url}}/conductores/1
-Authorization: Bearer {{token}}
+
 
 ### Crear conductor
 
 POST {{url}}/conductores
 Content-Type: application/json
-Authorization: Bearer {{token}}
+
 
 {
     "nombre": "Roberto",
@@ -31,7 +30,6 @@ Authorization: Bearer {{token}}
 
 PUT {{url}}/conductores/2
 Content-Type: application/json
-Authorization: Bearer {{token}}
 
 {
     "nombre": "Juan",
@@ -45,4 +43,3 @@ Authorization: Bearer {{token}}
 ### Eliminar conductor
 
 DELETE {{url}}/conductores/2
-Authorization: Bearer {{token}}
