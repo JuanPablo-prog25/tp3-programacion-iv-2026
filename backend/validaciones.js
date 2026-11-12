@@ -34,6 +34,33 @@ export const validarConductor = [
 ];
 
 
+export const validarViaje = [
+  body("vehiculo_id").isInt({ min: 1 })
+    .withMessage("El vehiculo es obligatorio"),
+
+  body("conductor_id").isInt({ min: 1 })
+    .withMessage("El conductor es obligatorio"),
+
+  body("fecha_salida").isDate()
+    .withMessage("La fecha de salida debe ser valida"),
+
+  body("fecha_llegada").isDate()
+    .withMessage("La fecha de llegada debe ser valida"),
+
+  body("origen").isLength({ min: 1, max: 100 })
+    .withMessage("El origen debe tener entre 1 y 100 caracteres"),
+
+  body("destino").isLength({ min: 1, max: 100 })
+    .withMessage("El destino debe tener entre 1 y 100 caracteres"),
+
+  body("kilometros").isFloat({ min: 0 })
+    .withMessage("Los kilometros  deben ser mayores o iguales a 0"),
+
+  body("observaciones").optional().isLength({ max: 500 })
+    .withMessage("Las observaciones no pueden superar los 500 caracteres"),
+];
+
+
 
 export const verificarValidaciones = (req, res, next) => {
   const resultadoValidacion = validationResult(req);

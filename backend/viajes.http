@@ -1,0 +1,56 @@
+@url=http://localhost:3000
+
+
+### Obtener viajes
+GET {{url}}/viajes
+
+
+### Consultar por un viaje
+
+GET {{url}}/viajes/1
+
+
+### Consultar viajes por vehiculo
+GET {{url}}/viajes/vehiculo/1
+
+
+### Consultar viajes por conductor
+GET {{url}}/viajes/conductor/1
+
+
+### Crear viaje
+
+POST {{url}}/viajes
+Content-Type: application/json
+
+
+{
+  "vehiculo_id": 4,
+  "conductor_id": 1,
+  "fecha_salida": "2026-11-06",
+  "fecha_llegada": "2026-11-07",
+  "origen": "La Rioja",
+  "destino": "Cordoba",
+  "kilometros": 430,
+  "observaciones": "Carga general"
+}
+
+### Actualizar viaje
+
+PUT {{url}}/viajes/1
+Content-Type: application/json
+
+
+{
+  "vehiculo_id": 4,
+  "conductor_id": 1,
+  "fecha_salida": "2026-11-06",
+  "fecha_llegada": "2026-11-07",
+  "origen": "La Rioja",
+  "destino": "Mendoza",
+  "kilometros": 650,
+  "observaciones": "Entrega urgente"
+}
+
+### Eliminar viaje
+DELETE {{url}}/viajes/1
