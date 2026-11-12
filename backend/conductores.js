@@ -198,4 +198,39 @@ router.delete(
   }
 );
 
+router.get(
+  "/:id/kilometros",
+  validarAutenticacion,
+  validarId,
+  verificarValidaciones,
+  async (req, res) => {
+
+    const id = Number(req.params.id);
+
+    const [conductores] = await db.execute(
+      "SELECT id FROM conductores WHERE id=?",
+      [id]
+    );
+
+    if (conductores.length === 0) {
+      return res.status(404).json(
+        "Conductor no encontrado"
+      );
+    }
+
+    const [resultado] = await db.execute(
+      `SELECT SUM(kilometros) AS kilometros_recorridos
+       FROM viajes
+       WHERE conductor_id=?`,
+      [id]
+    );
+
+    res.json({
+      conductor_id: id,
+      kilometros_recorridos:
+        resultado[0].kilometros_recorridos ?? 0,
+    });
+  }
+);
+
 export default router;

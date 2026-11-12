@@ -1,22 +1,24 @@
 @url=http://localhost:3000
 
 
-
 ### Obtener conductores
-
 GET {{url}}/conductores
+
 
 ### Consultar por un conductor
 
 GET {{url}}/conductores/1
 
 
+### Kilometros de un conductor
+
+GET {{url}}/conductores/1/kilometros
+
+
 ### Crear conductor
 
 POST {{url}}/conductores
 Content-Type: application/json
-
-
 {
     "nombre": "Roberto",
     "apellido": "Ocampo",

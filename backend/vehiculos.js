@@ -152,4 +152,39 @@ router.delete(
   }
 );
 
+router.get(
+  "/:id/kilometros",
+  validarAutenticacion,
+  validarId,
+  verificarValidaciones,
+  async (req, res) => {
+
+    const id = Number(req.params.id);
+
+    const [vehiculos] = await db.execute(
+      "SELECT id FROM vehiculos WHERE id=?",
+      [id]
+    );
+
+    if (vehiculos.length === 0) {
+      return res.status(404).json(
+        "Vehiculo no encontrado"
+      );
+    }
+
+    const [resultado] = await db.execute(
+      `SELECT SUM(kilometros) AS kilometros_recorridos
+       FROM viajes
+       WHERE vehiculo_id=?`,
+      [id]
+    );
+
+    res.json({
+      vehiculo_id: id,
+      kilometros_recorridos:
+        resultado[0].kilometros_recorridos ?? 0,
+    });
+  }
+);
+
 export default router;

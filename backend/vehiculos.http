@@ -2,22 +2,27 @@
 
 
 ### Obtener vehiculos
-
 GET {{url}}/vehiculos
+
 
 ### Consultar por un vehiculo
 GET {{url}}/vehiculos/3
 
 
+### Kilometros de un vehiculo
+
+GET {{url}}/vehiculos/5/kilometros
+
+
+
 ### Crear vehiculo
 POST {{url}}/vehiculos
-
 Content-Type: application/json
 
 {
     "marca": "Ford",
-    "modelo": "Fiesta",
-    "patente": "AA200HY",
+    "modelo": "Focus",
+    "patente": "AA200HF",
     "anio": 2016,
     "capacidad_carga": 900
 }
@@ -25,7 +30,6 @@ Content-Type: application/json
 ### Actualizar vehiculo
 
 PUT {{url}}/vehiculos/2
-
 Content-Type: application/json
 
 {
