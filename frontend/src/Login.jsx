@@ -1,13 +1,21 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
+import { useAuth } from "./Auth";
 
 export function Login() {
+  const { error, login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit =  async(e) => {
     e.preventDefault();
 
-    console.log({email, password, });
+     const res = await login(email, password);
+
+     if (res.success) {
+       navigate("/");
+     }
   };
 
   return (
@@ -15,6 +23,7 @@ export function Login() {
       <h2>Ingresar</h2>
 
       <form onSubmit={handleSubmit}>
+
         <label>Email</label>
 
         <input
@@ -32,6 +41,9 @@ export function Login() {
           onChange={(e) =>setPassword(e.target.value)
           }
         />
+
+        {error && <p style={{ color: "red" }}>{error}</p>}
+
 
         <button type="submit">
           Ingresar

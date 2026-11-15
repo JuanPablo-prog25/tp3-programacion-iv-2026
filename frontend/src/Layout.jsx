@@ -1,17 +1,36 @@
-import { Link, Outlet } from "react-router";
+import { Link, Outlet,useLocation,useNavigate } from "react-router";
+import { useAuth } from "./Auth";
 
 export function Layout() {
+    const {isAuthenticated,logout,} = useAuth();
+
+     const { pathname } = useLocation();
+
+     const navigate = useNavigate();
+
   return (
     <main>
       <nav>
-        <ul>
-          <li>
-            <Link to="/">Inicio</Link>
+       <ul>
+          <li className={pathname === "/" ? "active" : ""}>
+            <Link to="/">
+              Inicio
+            </Link>
           </li>
-
-          <li>
-            <Link to="/login">Ingresar</Link>
-          </li>
+          {isAuthenticated ? (
+            <>
+              <button onClick={() => {logout();navigate("/");}}
+              >
+                Salir
+              </button>
+            </>
+          ) : (
+            <li className={pathname.startsWith("/login") ? "active" : ""}>
+              <Link to="/login">
+                Ingresar
+              </Link>
+            </li>
+          )}
         </ul>
       </nav>
 
