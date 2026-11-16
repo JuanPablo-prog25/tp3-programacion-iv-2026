@@ -1,4 +1,4 @@
-import {createContext, useCallback, useContext, useState, } from "react";
+import {createContext, useCallback, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext(null);
 
@@ -17,7 +17,16 @@ export const AuthProvider = ({children,}) => {
 
   const [error, setError]= useState(null);
 
+   useEffect(() => {
+    const tokenGuardado =localStorage.getItem("token");
+     if (tokenGuardado) {
+         setToken(tokenGuardado);
+        }
+    }, []);
+
   const login = useCallback(async (email, password) => {setError(null);
+
+
     
     try {
 
@@ -45,6 +54,8 @@ export const AuthProvider = ({children,}) => {
         }
 
         setToken(session.token);
+        localStorage.setItem("token", session.token);
+        
 
         setNombre(session.nombre);
 
@@ -63,13 +74,17 @@ export const AuthProvider = ({children,}) => {
   );
 
   const logout = useCallback(() => {
+
+    localStorage.removeItem( "token");
+    
     setToken(null);
 
-      setNombre(null);
+    setNombre(null);
 
-      setEmail(null);
+    setEmail(null);
 
-      setError(null);
+    setError(null);
+
 
     },
     []
