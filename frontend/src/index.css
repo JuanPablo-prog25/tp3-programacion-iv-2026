@@ -137,3 +137,20 @@ ul {
   list-style: none;
   padding: 0;
 }
+
+.menu-principal {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.menu-principal a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.menu-principal a:hover {
+  text-decoration: underline;
+}

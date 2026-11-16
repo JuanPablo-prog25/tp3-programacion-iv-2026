@@ -1,4 +1,4 @@
-import { Outlet } from "react-router";
+import { Outlet, Link } from "react-router";
 import { useAuth } from "./Auth";
 
 export function AuthLayout() {
@@ -11,16 +11,44 @@ export function AuthLayout() {
       </p>
     );
   }
+  
+  return (
+    <>
+
+      <nav className="menu-principal">
+
+        <Link to="/">
+          Inicio
+        </Link>
 
 
+        <Link to="/vehiculos">
+          Vehículos
+        </Link>
 
-  return <Outlet />;
+      
+        <Link to="/conductores">
+          Conductores
+        </Link>
 
+      
 
+        <Link to="/viajes">
+          Viajes
+        </Link>
 
+      </nav>
 
+      <Outlet />
 
-
-
-
+    </>
+  );
 }
+
+
+
+
+
+
+
+

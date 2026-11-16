@@ -10,7 +10,7 @@ export function Layout() {
 
   return (
     <main>
-      <nav>
+      <nav className="menu-principal">
        <ul>
           <li className={pathname === "/" ? "active" : ""}>
             <Link to="/">
