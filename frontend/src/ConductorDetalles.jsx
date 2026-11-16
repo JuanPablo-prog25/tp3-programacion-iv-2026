@@ -6,6 +6,8 @@ export function ConductorDetalles() {
 
   const [conductor, setConductor] = useState(null);
 
+  const [viajes, setViajes] = useState([]);
+
   const { id } = useParams();
 
   const { fetchAuth } = useAuth();
@@ -26,9 +28,30 @@ export function ConductorDetalles() {
 
     setConductor(conductor);}, [id, fetchAuth]);
 
+    const obtenerViajes = useCallback(async () => {
+      const url = new URL( `http://localhost:3000/viajes/conductor/${id}` );
+
+    const response = await fetchAuth(url);
+    if (!response.ok) {
+      console.error( "Fallo al pedir viajes");
+
+      setViajes([]);
+
+      return;
+    }
+
+    const viajes = await response.json();
+
+    setViajes(viajes);
+
+  }, [id, fetchAuth]);
+
+
+
   useEffect(() => {
     obtenerConductor();
-  }, [obtenerConductor]);
+    obtenerViajes();
+  }, [obtenerConductor, obtenerViajes]);
 
   if (!conductor || !id) {
     return null;
@@ -65,6 +88,57 @@ export function ConductorDetalles() {
         Vencimiento licencia:
         <b>{new Date(conductor.fecha_vencimiento_licencia).toLocaleDateString()}</b>
       </p>
+      <h3>
+        Historial de viajes
+      </h3>
+
+      {viajes.length === 0 ? (
+        <p>No hay viajes registrados</p>
+      ) : (
+
+    <table>
+      
+    <thead>
+      <tr>
+        <th>Origen</th>
+        <th>Destino</th>
+        <th>Km</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      {viajes.map((viaje) => (
+        <tr key={viaje.id}>
+
+          <td>
+            {viaje.origen}
+          </td>
+
+          <td>
+            {viaje.destino}
+          </td>
+
+          <td>
+            {viaje.kilometros}
+          </td>
+
+        </tr>
+      ))}
+
+    </tbody>
+
+  </table>
+
+  )}
+   <p>
+    Total kilometros recorridos:
+      <b>
+        {" "}
+       { viajes.reduce(( total, viaje ) => total + Number(viaje.kilometros), 0) } km
+   </b>
+
+  </p>
 
       <Link to="/conductores">
         <button>
