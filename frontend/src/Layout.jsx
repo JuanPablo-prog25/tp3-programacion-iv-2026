@@ -19,6 +19,12 @@ export function Layout() {
           </li>
           {isAuthenticated ? (
             <>
+            <li className={pathname.startsWith("/vehiculos") ? "active" : ""}>
+        <Link to="/vehiculos">
+          Vehículos
+        </Link>
+      </li>
+            
               <button onClick={() => {logout();navigate("/");}}
               >
                 Salir
@@ -30,6 +36,12 @@ export function Layout() {
                 Ingresar
               </Link>
             </li>
+
+
+
+            
+
+            
           )}
         </ul>
       </nav>
