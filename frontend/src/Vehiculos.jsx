@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useAuth } from "./Auth";
+import { Link } from "react-router";
 
 export function Vehiculos() {
 
@@ -7,12 +8,11 @@ export function Vehiculos() {
 
   const { fetchAuth } = useAuth();
 
-  const obtenerVehiculos = useCallback(
-    async () => {
+  const obtenerVehiculos = useCallback( async () => {
 
-      const response = await fetchAuth(
-        "http://localhost:3000/vehiculos"
-      );
+    const url = new URL("http://localhost:3000/vehiculos");
+
+      const response = await fetchAuth(url);
 
       if (!response.ok) {
         console.error("Fallo al pedir vehiculos");
@@ -49,7 +49,12 @@ export function Vehiculos() {
 
           {vehiculos.map( (vehiculo) => (
               <tr key={vehiculo.id}>
-                <td>{vehiculo.id}</td>
+
+                <td>
+                <Link to={`/vehiculos/${vehiculo.id}`}>
+                {vehiculo.id}
+                </Link>
+                </td>
 
                 <td>{vehiculo.marca}</td>
 
