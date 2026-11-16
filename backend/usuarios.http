@@ -1,15 +1,30 @@
 @url=http://localhost:3000
 
+### Login para obtener token
+# @name login
+POST {{url}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "juan@gmail.com",
+    "password": "Minuscula123"
+}
+
+###
+@token = {{login.response.body.token}}
+
 ### Consultar usuarios
 GET {{url}}/usuarios
+Authorization: Bearer {{token}}
 
 ### Consultar por un usuario
 GET {{url}}/usuarios/4
+Authorization: Bearer {{token}}
+
 
 ### Crear usuario
 POST {{url}}/usuarios
 Content-Type: application/json
-
 {
     "nombre": "Juan Pablo",
     "email": "juan@gmail.com",
@@ -20,6 +35,7 @@ Content-Type: application/json
 
 PUT {{url}}/usuarios/3
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
     "nombre": "Juan Pablo Ocampo",
@@ -29,3 +45,4 @@ Content-Type: application/json
 
 ### Eliminar usuario
 DELETE {{url}}/usuarios/3
+Authorization: Bearer {{token}}

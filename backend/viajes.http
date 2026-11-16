@@ -1,29 +1,39 @@
 @url=http://localhost:3000
 
+### Login para obtener token
+# @name login
+POST {{url}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "juan@gmail.com",
+    "password": "Minuscula123"
+}
+
+###
+@token = {{login.response.body.token}}
 
 ### Obtener viajes
 GET {{url}}/viajes
-
+Authorization: Bearer {{token}}
 
 ### Consultar por un viaje
 
 GET {{url}}/viajes/1
-
+Authorization: Bearer {{token}}
 
 ### Consultar viajes por vehiculo
 GET {{url}}/viajes/vehiculo/1
-
+Authorization: Bearer {{token}}
 
 ### Consultar viajes por conductor
 GET {{url}}/viajes/conductor/1
-
+Authorization: Bearer {{token}}
 
 ### Crear viaje
 
 POST {{url}}/viajes
 Content-Type: application/json
-
-
 {
   "vehiculo_id": 4,
   "conductor_id": 1,
@@ -39,7 +49,7 @@ Content-Type: application/json
 
 PUT {{url}}/viajes/1
 Content-Type: application/json
-
+Authorization: Bearer {{token}}
 
 {
   "vehiculo_id": 4,
@@ -54,3 +64,4 @@ Content-Type: application/json
 
 ### Eliminar viaje
 DELETE {{url}}/viajes/1
+Authorization: Bearer {{token}}

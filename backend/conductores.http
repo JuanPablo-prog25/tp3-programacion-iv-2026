@@ -1,18 +1,33 @@
 @url=http://localhost:3000
 
+### Login para obtener token
+# @name login
+POST {{url}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "juan@gmail.com",
+    "password": "Minuscula123"
+}
+
+###
+@token = {{login.response.body.token}}
 
 ### Obtener conductores
 GET {{url}}/conductores
+Authorization: Bearer {{token}}
 
 
 ### Consultar por un conductor
 
 GET {{url}}/conductores/1
+Authorization: Bearer {{token}}
 
 
 ### Kilometros de un conductor
 
 GET {{url}}/conductores/1/kilometros
+Authorization: Bearer {{token}}
 
 
 ### Crear conductor
@@ -32,7 +47,7 @@ Content-Type: application/json
 
 PUT {{url}}/conductores/2
 Content-Type: application/json
-
+Authorization: Bearer {{token}}
 {
     "nombre": "Juan",
     "apellido": "Perez Gomez",
@@ -45,3 +60,4 @@ Content-Type: application/json
 ### Eliminar conductor
 
 DELETE {{url}}/conductores/2
+Authorization: Bearer {{token}}
