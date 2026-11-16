@@ -42,7 +42,6 @@ router.get(
 
 router.post(
   "/",
-  validarAutenticacion,
   validarUsuario,
   verificarValidaciones,
   async (req, res) => {
