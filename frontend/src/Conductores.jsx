@@ -50,6 +50,7 @@ export function Conductores() {
             <th>Apellido</th>
             <th>Documento</th>
             <th>Licencia</th>
+            <th>Acciones</th>
           </tr>
         </thead>
 
@@ -64,21 +65,36 @@ export function Conductores() {
                   </Link>
                 </td>
 
-                <td>
-                  {conductor.nombre}
+                <td>{conductor.nombre}</td>
+
+                <td>{conductor.apellido}</td>
+
+                <td>{conductor.numero_documento}</td>
+
+                <td>{conductor.numero_licencia}</td>
+
+                 <td>
+                     <button
+                      onClick={async () => {
+                         if (!window.confirm( `Eliminar ${conductor.nombre} ${conductor.apellido}?`) ) {
+                            return;
+                        }
+                        const response = await fetchAuth( `http://localhost:3000/conductores/${conductor.id}`,{
+                            method: "DELETE",
+                        });
+                         if (!response.ok) {
+
+                        const err =await response.json();
+                        console.error(err);
+                         return;
+                        }
+                        obtenerConductores();
+                     }}
+                     >
+                     Eliminar
+                      </button>
                 </td>
 
-                <td>
-                  {conductor.apellido}
-                </td>
-
-                <td>
-                  {conductor.numero_documento}
-                </td>
-
-                <td>
-                  {conductor.numero_licencia}
-                </td>
 
               </tr>
             )
