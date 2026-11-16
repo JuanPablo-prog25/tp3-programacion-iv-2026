@@ -52,16 +52,12 @@ export function Conductores() {
 
         <tbody>
 
-          {conductores.map(
-            (conductor) => (
-              <tr
-                key={conductor.id}
+          {conductores.map( (conductor) => (
+              <tr key={conductor.id}
               >
                 <td>
-                  <Link
-                    to={`/conductores/${conductor.id}`}
-                  >
-                    {conductor.id}
+                  <Link to={`/conductores/${conductor.id}`} >
+                  {conductor.id}
                   </Link>
                 </td>
 
