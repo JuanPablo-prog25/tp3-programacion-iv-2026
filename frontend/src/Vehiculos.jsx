@@ -73,27 +73,35 @@ export function Vehiculos() {
                 <td>{vehiculo.capacidad_carga}</td>
 
                 <td>
-                     <button
-                      onClick={async () => {
-                         if (!window.confirm( `Eliminar ${vehiculo.marca} ${vehiculo.modelo}?`) ) {
-                            return;
-                        }
-                        const response = await fetchAuth( `http://localhost:3000/vehiculos/${vehiculo.id}`,{
-                            method: "DELETE",
-                        });
-                         if (!response.ok) {
 
-                        const err =await response.json();
-                        console.error(err);
-                         return;
-                        }
-                        obtenerVehiculos();
+                <Link to={`/vehiculos/${vehiculo.id}/editar`}
+                >
+                    <button> Editar</button>
+
+                 </Link>
+                  <button
+                  onClick={async () => {
+                     if ( !window.confirm(`¿Eliminar ${vehiculo.marca} ${vehiculo.modelo}?`) ) {
+                        return;
+                    }
+                    const response = await fetchAuth(`http://localhost:3000/vehiculos/${vehiculo.id}`,{
+                        method: "DELETE",
+                     });
+
+                     if (!response.ok) {
+                    const err = await response.json();
+                     console.error(err);
+                     return;
+                     }
+                      obtenerVehiculos();
                      }}
+
                      >
                      Eliminar
-                      </button>
-                </td>
-              </tr>
+
+                    </button>
+                    </td>
+                 </tr>
             )
           )}
 
