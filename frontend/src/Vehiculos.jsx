@@ -46,6 +46,7 @@ export function Vehiculos() {
             <th>Patente</th>
             <th>Año</th>
             <th>Capacidad de carga</th>
+            <th>Acciones</th>
 
           </tr>
         </thead>
@@ -70,6 +71,28 @@ export function Vehiculos() {
                 <td>{vehiculo.anio}</td>
 
                 <td>{vehiculo.capacidad_carga}</td>
+
+                <td>
+                     <button
+                      onClick={async () => {
+                         if (!window.confirm( `Eliminar ${vehiculo.marca} ${vehiculo.modelo}?`) ) {
+                            return;
+                        }
+                        const response = await fetchAuth( `http://localhost:3000/vehiculos/${vehiculo.id}`,{
+                            method: "DELETE",
+                        });
+                         if (!response.ok) {
+
+                        const err =await response.json();
+                        console.error(err);
+                         return;
+                        }
+                        obtenerVehiculos();
+                     }}
+                     >
+                     Eliminar
+                      </button>
+                </td>
               </tr>
             )
           )}
