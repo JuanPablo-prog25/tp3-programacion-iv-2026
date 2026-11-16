@@ -11,9 +11,24 @@ import {
 const router = express.Router();
 
 router.get("/", validarAutenticacion, async (req, res) => {
-    const [viajes] = await db.execute(
-      "SELECT * FROM viajes"
-    );
+    const [viajes] = await db.execute(`
+      SELECT 
+       v.id,
+      v.vehiculo_id,
+      v.conductor_id,
+      ve.marca,
+      ve.modelo,
+      c.nombre,
+      c.apellido,
+      v.origen,
+      v.destino,
+      v.kilometros
+    FROM viajes v
+    INNER JOIN vehiculos ve
+      ON v.vehiculo_id = ve.id
+    INNER JOIN conductores c
+      ON v.conductor_id = c.id
+    `);
 
     res.json(viajes);
   }
