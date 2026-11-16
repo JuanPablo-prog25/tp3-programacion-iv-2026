@@ -45,8 +45,10 @@ CREATE TABLE viajes (
     CONSTRAINT fk_viaje_vehiculo
         FOREIGN KEY (vehiculo_id)
         REFERENCES vehiculos(id),
+        ON DELETE CASCADE,
 
     CONSTRAINT fk_viaje_conductor
         FOREIGN KEY (conductor_id)
         REFERENCES conductores(id)
+        ON DELETE CASCADE
 );
