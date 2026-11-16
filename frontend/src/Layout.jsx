@@ -24,6 +24,13 @@ export function Layout() {
           Vehículos
         </Link>
       </li>
+      <li className={pathname.startsWith("/conductores") ? "active" : ""}>
+        <Link to="/conductores">
+          Conductores
+        </Link>
+
+        
+      </li>
             
               <button onClick={() => {logout();navigate("/");}}
               >

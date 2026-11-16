@@ -10,6 +10,7 @@ import { Login } from "./Login";
 import { AuthLayout } from "./AuthLayout";
 import { Vehiculos } from "./Vehiculos";
 import { VehiculoDetalles } from "./VehiculoDetalles";
+import { Conductores } from "./Conductores";
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -27,6 +28,10 @@ createRoot(document.getElementById('root')).render(
             <Route path="vehiculos" element={<AuthLayout />}>
               <Route index element={<Vehiculos />} />
               <Route path=":id" element={<VehiculoDetalles />} />
+            </Route>
+            
+            <Route path="conductores" element={<AuthLayout />}>
+              <Route index element={<Conductores />} />
             </Route>
         </Routes>
       </BrowserRouter>
