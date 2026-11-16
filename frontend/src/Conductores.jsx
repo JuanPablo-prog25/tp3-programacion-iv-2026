@@ -38,6 +38,9 @@ export function Conductores() {
   return (
     <>
       <h1>Conductores</h1>
+      <Link to="/conductores/crear">
+      <button> Nuevo conductor </button>
+    </Link>
 
       <table>
         <thead>
