@@ -33,6 +33,9 @@ export function Vehiculos() {
   return (
     <>
       <h1>Vehiculos</h1>
+       <Link to="/vehiculos/crear">
+      <button> Nuevo vehículo </button>
+    </Link>
 
       <table>
         <thead>
@@ -42,6 +45,8 @@ export function Vehiculos() {
             <th>Modelo</th>
             <th>Patente</th>
             <th>Año</th>
+            <th>Capacidad de carga</th>
+
           </tr>
         </thead>
 
@@ -63,6 +68,8 @@ export function Vehiculos() {
                 <td>{vehiculo.patente}</td>
 
                 <td>{vehiculo.anio}</td>
+
+                <td>{vehiculo.capacidad_carga}</td>
               </tr>
             )
           )}
