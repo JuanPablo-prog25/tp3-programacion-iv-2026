@@ -17,6 +17,11 @@ export const AuthProvider = ({children,}) => {
 
   const [error, setError]= useState(null);
 
+   const limpiarErrores = useCallback(() => {
+        setError(null);
+        }, []);
+
+
    useEffect(() => {
     const tokenGuardado =localStorage.getItem("token");
      if (tokenGuardado) {
@@ -116,6 +121,7 @@ export const AuthProvider = ({children,}) => {
         login,
         logout,
         fetchAuth,
+        limpiarErrores,
       }}
     >
       {children}

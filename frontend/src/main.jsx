@@ -18,6 +18,7 @@ import { ConductorCrear } from "./ConductorCrear";
 import { ViajeCrear } from "./ViajeCrear";
 import { VehiculoEditar } from './VehiculoEditar';
 import { ConductorEditar } from './ConductorEditar';
+import { Registro } from './Registro';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
      <AuthProvider>
@@ -29,6 +30,10 @@ createRoot(document.getElementById('root')).render(
 
             <Route path="login" element={<Login />}
             />
+
+            <Route path="registro" element={<Registro />}
+            />
+
           </Route>
 
             <Route path="vehiculos" element={<AuthLayout />}>

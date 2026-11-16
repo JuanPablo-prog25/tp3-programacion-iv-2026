@@ -1,15 +1,20 @@
-import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router";
 import { useAuth } from "./Auth";
 
 export function Login() {
-  const { error, login } = useAuth();
+  const { error, login, limpiarErrores } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
    const navigate = useNavigate();
 
+   useEffect(() => {
+    limpiarErrores();
+   },[limpiarErrores]);
+
   const handleSubmit =  async(e) => {
     e.preventDefault();
+   
 
      const res = await login(email, password);
 
@@ -48,7 +53,16 @@ export function Login() {
         <button type="submit">
           Ingresar
         </button>
-      </form>
+
+        <p>
+       No tiene cuenta?
+      </p>
+
+      <Link to="/registro">
+       Registrarse
+      </Link>
+
+    </form>
     </>
   );
 }
