@@ -28,6 +28,11 @@ export function Layout() {
         <Link to="/conductores">
           Conductores
         </Link>
+      </li>
+      <li className={pathname.startsWith("/viajes") ? "active" : ""}>
+        <Link to="/viajes">
+          Viajes
+        </Link>
 
         
       </li>
@@ -43,6 +48,7 @@ export function Layout() {
                 Ingresar
               </Link>
             </li>
+            
 
 
 
