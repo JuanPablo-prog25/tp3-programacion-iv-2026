@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useAuth } from "./Auth";
+import { Link } from "react-router";
 
 
 export function Viajes() {
@@ -36,6 +37,10 @@ export function Viajes() {
   return (
     <>
       <h1>Viajes</h1>
+      <Link to="/viajes/crear">
+        <button> Nuevo viaje </button>
+        </Link>
+       
 
       <table>
         <thead>
@@ -46,6 +51,7 @@ export function Viajes() {
             <th>Origen</th>
             <th>Destino</th>
             <th>Km</th>
+            <th>Observaciones</th>
           </tr>
         </thead>
 
@@ -65,6 +71,8 @@ export function Viajes() {
               <td>{viaje.destino}</td>
 
               <td>{viaje.kilometros}</td>
+              
+              <td>{viaje.observaciones}</td>
 
             </tr>
           ))}
