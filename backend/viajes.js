@@ -22,7 +22,8 @@ router.get("/", validarAutenticacion, async (req, res) => {
       c.apellido,
       v.origen,
       v.destino,
-      v.kilometros
+      v.kilometros,
+      v.observaciones
     FROM viajes v
     INNER JOIN vehiculos ve
       ON v.vehiculo_id = ve.id
