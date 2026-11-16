@@ -74,7 +74,15 @@ export function Conductores() {
                 <td>{conductor.numero_licencia}</td>
 
                  <td>
+
+                  <Link to={`/conductores/${conductor.id}/editar`}
+                     >
+                     <button>Editar</button>
+                     </Link>
+
                      <button
+
+
                       onClick={async () => {
                          if (!window.confirm( `Eliminar ${conductor.nombre} ${conductor.apellido}?`) ) {
                             return;
@@ -94,6 +102,8 @@ export function Conductores() {
                      Eliminar
                       </button>
                 </td>
+
+
 
 
               </tr>
