@@ -6,9 +6,14 @@ export function AuthLayout() {
 
   if (!isAuthenticated) {
     return (
+      <>
       <p>
         No esta autenticado
       </p>
+      <Link to="/">
+          <button>Volver al inicio</button>
+        </Link>
+      </>
     );
   }
   

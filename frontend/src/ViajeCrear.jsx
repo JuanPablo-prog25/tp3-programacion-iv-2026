@@ -75,7 +75,7 @@ export function ViajeCrear() {
             return;
           }
 
-          if (nuevoViaje.fecha_llegada <= nuevoViaje.fecha_salida )
+          if (nuevoViaje.fecha_llegada < nuevoViaje.fecha_salida )
              {
             setError( "La fecha de llegada debe ser posterior a la fecha de salida");
 

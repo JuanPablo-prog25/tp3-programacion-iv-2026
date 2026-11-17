@@ -102,10 +102,17 @@ export const AuthProvider = ({children,}) => {
             "No esta autenticado"
           );
         }
-
-        return fetch(url, { ...options, headers: { ...options.headers, Authorization:`Bearer ${token}`,},});
-      }, [token]
-    );
+        const response = await fetch(url, {...options,headers: {
+        ...options.headers,
+        Authorization: `Bearer ${token}`,
+    },
+    });
+    if (response.status === 401) {
+      alert("Tu sesión expiro, Volve a iniciar sesion.");
+      logout();
+    }
+         return response;
+     }, [token, logout]);
 
   return (
     <AuthContext.Provider
