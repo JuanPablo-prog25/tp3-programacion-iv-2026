@@ -20,6 +20,8 @@ router.get("/", validarAutenticacion, async (req, res) => {
       ve.modelo,
       c.nombre,
       c.apellido,
+      v.fecha_salida,
+      v.fecha_llegada,
       v.origen,
       v.destino,
       v.kilometros,
