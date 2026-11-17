@@ -12,6 +12,8 @@ export function VehiculoCrear() {
     capacidad_carga: "",
   });
 
+  const [error, setError]= useState("");
+
   const navigate = useNavigate();
 
   const { fetchAuth } = useAuth();
@@ -26,17 +28,17 @@ export function VehiculoCrear() {
           e.preventDefault();
 
            if ( !nuevoVehiculo.marca.trim() || !nuevoVehiculo.modelo.trim() ||!nuevoVehiculo.patente.trim()) {
-        alert("Complete todos los campos");
+        setError("Complete todos los campos");
          return;
         }     
 
         if ( nuevoVehiculo.anio < 1990 ||nuevoVehiculo.anio > new Date().getFullYear()){
-             alert("Ingrese un año valido");
+             setError("Ingrese un año valido");
               return;
          }
 
   if (nuevoVehiculo.capacidad_carga <= 0 ) {
-    alert("La capacidad de carga debe ser mayor a 0");
+    setError("La capacidad de carga debe ser mayor a 0");
     return;
   }
 
@@ -75,6 +77,7 @@ export function VehiculoCrear() {
             }))
           }
         />
+
 
         <label htmlFor="modelo">
           Modelo:
@@ -128,7 +131,7 @@ export function VehiculoCrear() {
           onChange={(e) =>setNuevoVehiculo((v) => ({...v,capacidad_carga: Number(e.target.value),}))
           }
         />
-
+        {error && <p style={{ color: "red" }}>{error}</p>}
         <div>
           <button type="submit">
             Crear
