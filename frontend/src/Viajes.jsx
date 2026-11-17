@@ -50,6 +50,8 @@ export function Viajes() {
             <th>Conductor</th>
             <th>Origen</th>
             <th>Destino</th>
+            <th>Fecha salida</th>
+            <th>Fecha llegada</th>
             <th>Km</th>
             <th>Observaciones</th>
           </tr>
@@ -70,10 +72,16 @@ export function Viajes() {
 
               <td>{viaje.destino}</td>
 
+               <td>{viaje.fecha_salida?.slice(0, 10)}</td>
+              
+              <td>{viaje.fecha_llegada?.slice(0, 10)}</td>
+
               <td>{viaje.kilometros}</td>
               
               <td>{viaje.observaciones}</td>
 
+             
+        
             </tr>
           ))}
 
